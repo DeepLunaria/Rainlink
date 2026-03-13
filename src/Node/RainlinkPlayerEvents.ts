@@ -134,6 +134,7 @@ export class RainlinkPlayerEvents {
 		const player = manager.players.get(data.guildId)
 		if (player) {
 			player.position = Number(data.state.position)
+			if (player.queue.current) player.queue.current.position = Number(data.state.position)
 			manager.emit(
 				RainlinkEvents.Debug,
 				`[Rainlink] / [Player @ ${data.guildId}] / [Events] / [Updated] | ` + JSON.stringify(data)
